@@ -4,6 +4,8 @@ import ErrorElement from "../Components/ErrorElement";
 import Home from "../Components/Home";
 import UserProfile from "../Components/UserProfile";
 import UpdateProfile from "../Components/UpdateProfile";
+import SignIn from "../Components/SignIn";
+import Register from "../Components/Register";
 
 const WebPaths = createBrowserRouter([
     {
@@ -22,6 +24,14 @@ const WebPaths = createBrowserRouter([
             {
                 path: '/updateProfile',
                 element: <UpdateProfile></UpdateProfile>
+            },
+            {
+                path: '/login',
+                element: <SignIn></SignIn>
+            },
+            {
+                path: '/register',
+                element: <Register></Register>
             }
         ]
     }
