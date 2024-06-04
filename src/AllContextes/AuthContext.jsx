@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../FireBasePackages/FireBaseConfig";
 
@@ -21,8 +21,12 @@ const AuthContext = ({children}) => {
         return signInWithEmailAndPassword(auth,email,password);
     }
 
+    const logOut  = ()=>{
+        return signOut(auth);
+    }
+
     const data = {
-       user,createUser,login
+       user,createUser,login,logOut
     }
   return (
     <ContentPass.Provider value={data}>
