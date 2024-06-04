@@ -1,15 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignIn = () => {
+
+    const handleLogin = e =>{
+        e.preventDefault();
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        console.log(email, password);
+        if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
+            toast.error('Please enter a valid email address')
+            return;
+        }
+    }
     return (
         <div className='flex justify-center items-center'>
             <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-gray-50 text-gray-800">
                 <h1 className="text-2xl font-bold text-center">Login</h1>
-                <form noValidate="" action="" className="space-y-6">
+                <form onSubmit={handleLogin} className="space-y-6">
                     <div className="space-y-1 text-sm">
                         <label htmlFor="username" className="block text-gray-600">User Email</label>
-                        <input type="text" name="email" id="username" placeholder="user email" className="w-full px-4 py-3 rounded-md border-gray-300 bg-gray-50 text-gray-800 focus:border-violet-600" />
+                        <input type="email" name="email" id="username" placeholder="user email" className="w-full px-4 py-3 rounded-md border-gray-300 bg-gray-50 text-gray-800 focus:border-violet-600" />
                     </div>
                     <div className="space-y-1 text-sm">
                         <label htmlFor="password" className="block text-gray-600">Password</label>
@@ -46,6 +59,7 @@ const SignIn = () => {
                     <Link to={'/register'} className="underline text-gray-800">Sign up</Link>
                 </p>
             </div>
+            <ToastContainer />
         </div>
     );
 };
