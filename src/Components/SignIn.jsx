@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { ContentPass } from '../AllContextes/AuthContext';
 
 const SignIn = () => {
-
+   const {login} = useContext(ContentPass)
     const handleLogin = e =>{
         e.preventDefault();
         const email = e.target.email.value;
@@ -14,6 +15,17 @@ const SignIn = () => {
             toast.error('Please enter a valid email address')
             return;
         }
+        if(!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password)){
+            toast.error('Please enter a valid password')
+            return;
+        }
+        login(email, password)
+        .then(res=>{
+            toast.success('User successfully LoggedIn')
+        })
+        .catch(err=>{
+            toast.error(err.message)
+        })
     }
     return (
         <div className='flex justify-center items-center'>
