@@ -1,11 +1,12 @@
-import React from 'react';
-import auth from '../FireBasePackages/FireBaseConfig.js';
+
+import { Outlet } from 'react-router-dom';
+import Navbar from './Navbar.jsx';
 
 const MainRoot = () => {
-    console.log(auth)
     return (
-        <div>
-            this is main Root
+        <div className='max-w-screen-xl mx-auto'>
+            <Navbar></Navbar>
+            <Outlet></Outlet>
         </div>
     );
 };
