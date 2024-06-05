@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import { Link, NavLink} from 'react-router-dom';
+import { Link, NavLink, useNavigate} from 'react-router-dom';
 import { ContentPass } from '../AllContextes/AuthContext';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
 
 const Navbar = () => {
     const { user,logOut } = useContext(ContentPass)
@@ -10,10 +10,22 @@ const Navbar = () => {
     const handleLogOut = () => {
         logOut()
         .then(res=>{
-        toast.success("Log Out Success")
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Sign Out Successful",
+                showConfirmButton: false,
+                timer: 1500
+              });
         })
         .catch(err=>{
-            toast.error("Log Out Failed")
+            Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "Sign Out Failed",
+                showConfirmButton: false,
+                timer: 1500
+              });
         })
     }
     const navList = <>
@@ -50,7 +62,7 @@ const Navbar = () => {
     </>
     return (
         <div>
-            <div className="navbar h-[20vh] bg-base-100">
+            <div className="navbar h-[30vh] lg:h-[15vh] bg-base-100">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -77,7 +89,6 @@ const Navbar = () => {
                         </div> : <div> <Link to={'/login'} className="btn btn-outline">Sign In</Link></div>
                     }
                 </div>
-                <ToastContainer />
             </div>
         </div>
     );

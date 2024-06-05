@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
 import { ContentPass } from '../AllContextes/AuthContext';
 
 const SignIn = () => {
@@ -12,19 +12,43 @@ const SignIn = () => {
         const password = e.target.password.value;
         console.log(email, password);
         if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
-            toast.error('Please enter a valid email address')
+            Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "Enter your Valid email address",
+                showConfirmButton: false,
+                timer: 1500
+              });
             return;
         }
         if(!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password)){
-            toast.error('Please enter a valid password')
+            Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "Enter a  valid Password",
+                showConfirmButton: false,
+                timer: 1500
+              });
             return;
         }
         login(email, password)
         .then(res=>{
-            toast.success('User successfully LoggedIn')
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "User Login Successfully",
+                showConfirmButton: false,
+                timer: 1500
+              });
         })
         .catch(err=>{
-            toast.error(err.message)
+            Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "User Login Failed",
+                showConfirmButton: false,
+                timer: 1500
+              });
         })
     }
     return (
@@ -71,7 +95,6 @@ const SignIn = () => {
                     <Link to={'/register'} className="underline text-gray-800">Sign up</Link>
                 </p>
             </div>
-            <ToastContainer />
         </div>
     );
 };
