@@ -62,6 +62,16 @@ const Navbar = () => {
                 Update Profile
             </NavLink>
         </li>
+        <li>
+            <NavLink
+                to="/contact"
+                className={({ isActive, isPending }) =>
+                    isPending ? "pending" : isActive ? "text-red-500" : ""
+                }
+            >
+                Contact
+            </NavLink>
+        </li>
         </>
        }
     </>

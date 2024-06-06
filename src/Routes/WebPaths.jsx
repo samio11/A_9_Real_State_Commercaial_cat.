@@ -8,6 +8,7 @@ import SignIn from "../Components/SignIn";
 import Register from "../Components/Register";
 import PrivateRoute from "../Components/PrivateRoute";
 import SelectedProperty from "../Components/SelectedProperty";
+import Contact from "../Components/Contact";
 
 const WebPaths = createBrowserRouter([
     {
@@ -39,6 +40,10 @@ const WebPaths = createBrowserRouter([
                 path:'/details/:id',
                 element:<PrivateRoute><SelectedProperty></SelectedProperty></PrivateRoute>,
                 loader: ()=> fetch('/Data.json')
+            },
+            {
+                path: '/contact',
+                element:<PrivateRoute><Contact></Contact></PrivateRoute>
             }
         ]
     }
