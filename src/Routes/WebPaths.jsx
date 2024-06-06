@@ -6,6 +6,8 @@ import UserProfile from "../Components/UserProfile";
 import UpdateProfile from "../Components/UpdateProfile";
 import SignIn from "../Components/SignIn";
 import Register from "../Components/Register";
+import PrivateRoute from "../Components/PrivateRoute";
+import SelectedProperty from "../Components/SelectedProperty";
 
 const WebPaths = createBrowserRouter([
     {
@@ -19,11 +21,11 @@ const WebPaths = createBrowserRouter([
             },
             {
                 path: '/user',
-                element:<UserProfile></UserProfile>
+                element:<PrivateRoute><UserProfile></UserProfile></PrivateRoute>
             },
             {
                 path: '/updateProfile',
-                element: <UpdateProfile></UpdateProfile>
+                element:<PrivateRoute><UpdateProfile></UpdateProfile></PrivateRoute>
             },
             {
                 path: '/login',
@@ -32,6 +34,11 @@ const WebPaths = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>
+            },
+            {
+                path:'/details/:id',
+                element:<PrivateRoute><SelectedProperty></SelectedProperty></PrivateRoute>,
+                loader: ()=> fetch('/Data.json')
             }
         ]
     }

@@ -39,7 +39,10 @@ const Navbar = () => {
                 Home
             </NavLink>
         </li>
-        <li>
+       {
+        user&&
+        <>
+         <li>
             <NavLink
                 to="/user"
                 className={({ isActive, isPending }) =>
@@ -59,6 +62,8 @@ const Navbar = () => {
                 Update Profile
             </NavLink>
         </li>
+        </>
+       }
     </>
     return (
         <div>
